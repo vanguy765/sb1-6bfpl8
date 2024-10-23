@@ -1,6 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../config/database.js';
 
+console.log('Thread model: Sequelize instance imported:', sequelize instanceof Sequelize);
+
 export class Thread extends Model {
   public id!: number;
   public userId!: number;
@@ -11,7 +13,9 @@ export class Thread extends Model {
 }
 
 console.log('Initializing Thread model');
+console.log('Thread model: Initializing Thread model');
 Thread.init({
+  console.log('Thread model: Inside Thread.init');
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,

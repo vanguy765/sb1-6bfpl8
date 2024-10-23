@@ -1,6 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../config/database.js';
 
+console.log('Assistant model: Sequelize instance imported:', sequelize instanceof Sequelize);
+
 export class Assistant extends Model {
   public id!: number;
   public phoneNumber!: string;
@@ -11,7 +13,9 @@ export class Assistant extends Model {
 }
 
 console.log('Initializing Assistant model');
+console.log('Assistant model: Initializing Assistant model');
 Assistant.init({
+  console.log('Assistant model: Inside Assistant.init');
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,

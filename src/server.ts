@@ -7,6 +7,8 @@ import dotenv from 'dotenv';
 import conversationRoutes from './routes/conversation.js';
 import { sequelize } from './config/database.js';
 
+console.log('Server: Sequelize instance imported:', sequelize instanceof Sequelize);
+
 dotenv.config();
 
 const app = express();
