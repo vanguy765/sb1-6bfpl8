@@ -21,13 +21,17 @@ export class ConversationService {
   }) {
     console.log('Handling conversation with params:', params);
     const { fromNumber, toNumber, agentType, message } = params;
+    console.log('Fetching or creating user with phone number:', fromNumber);
 
     // Get or create user
     const [user] = await User.findOrCreate({
       where: { phoneNumber: fromNumber }
     });
 
+    console.log('User fetched or created:', user);
+
     // Check cache for assistant
+    console.log('Checking cache for assistant with phone number:', toNumber, 'and agent type:', agentType);
     const assistantCacheKey = `assistant:${toNumber}:${agentType}`;
     const { data: cachedAssistant, fromCache: assistantFromCache } = 
       await cacheService.get<Assistant>(assistantCacheKey);
@@ -39,9 +43,16 @@ export class ConversationService {
         defaults: { openaiAssistantId: 'default-id' }
       });
       await cacheService.set(assistantCacheKey, assistant);
+    } else {
+      console.log('Assistant found in cache:', assistant);
+    } else {
+      console.log('Thread found in cache:', thread);
     }
 
+    console.log('Assistant fetched or created:', assistant);
+
     // Get or create thread
+    console.log('Checking cache for thread with user ID:', user.id, 'and assistant ID:', assistant.id);
     const threadCacheKey = `thread:${user.id}:${assistant.id}`;
     const { data: cachedThread, fromCache: threadFromCache } = 
       await cacheService.get<Thread>(threadCacheKey);
@@ -55,7 +66,10 @@ export class ConversationService {
       await cacheService.set(threadCacheKey, thread);
     }
 
+    console.log('Thread fetched or created:', thread);
+
     // Process message with OpenAI
+    console.log('Processing message with OpenAI:', message);
     const response = await this.openai.call(message);
 
     return {
