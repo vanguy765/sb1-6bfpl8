@@ -16,7 +16,8 @@ describe('ConversationService', () => {
       fromNumber: '+1234567890',
       toNumber: '+0987654321',
       agentType: 'support',
-      message: 'Hello'
+      message: 'Hello',
+      openaiAssistantId: 'mock-id-123'
     });
 
     const user = await User.findOne({ where: { phoneNumber: '+1234567890' } });
@@ -48,7 +49,8 @@ describe('ConversationService', () => {
       fromNumber: '+1234567890',
       toNumber: '+0987654321',
       agentType: 'support',
-      message: 'Follow up'
+      message: 'Follow up',
+      openaiAssistantId: 'mock-id-123'
     });
 
     expect(result.metadata.assistantFromCache).toBe(true);
