@@ -1,4 +1,4 @@
-import { Model, DataTypes, Sequelize } from 'sequelize';
+import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../config/database.js';
 
 console.log('User model: Sequelize instance imported:', sequelize instanceof Sequelize);
