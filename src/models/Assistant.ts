@@ -1,7 +1,7 @@
 import { Model, DataTypes, Sequelize } from 'sequelize';
 import { sequelize } from '../config/database.js';
 
-console.log('Assistant model: Sequelize instance imported:', sequelize instanceof Sequelize);
+console.log('Assistant model: Sequelize instance imported:', sequelize instanceof require('sequelize').Sequelize);
 
 export class Assistant extends Model {
   public id!: number;

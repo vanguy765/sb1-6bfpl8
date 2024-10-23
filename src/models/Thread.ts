@@ -1,7 +1,7 @@
 import { Model, DataTypes, Sequelize } from 'sequelize';
 import { sequelize } from '../config/database.js';
 
-console.log('Thread model: Sequelize instance imported:', sequelize instanceof Sequelize);
+console.log('Thread model: Sequelize instance imported:', sequelize instanceof require('sequelize').Sequelize);
 
 export class Thread extends Model {
   public id!: number;
