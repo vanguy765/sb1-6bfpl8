@@ -13,7 +13,6 @@ export class User extends Model {
 console.log('Initializing User model');
 console.log('User model: Initializing User model');
 User.init({
-  console.log('User model: Inside User.init');
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,

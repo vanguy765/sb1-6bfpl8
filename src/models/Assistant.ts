@@ -15,7 +15,6 @@ export class Assistant extends Model {
 console.log('Initializing Assistant model');
 console.log('Assistant model: Initializing Assistant model');
 Assistant.init({
-  console.log('Assistant model: Inside Assistant.init');
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,

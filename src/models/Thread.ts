@@ -15,7 +15,6 @@ export class Thread extends Model {
 console.log('Initializing Thread model');
 console.log('Thread model: Initializing Thread model');
 Thread.init({
-  console.log('Thread model: Inside Thread.init');
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
