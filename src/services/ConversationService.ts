@@ -24,8 +24,9 @@ export class ConversationService {
     console.log('Fetching or creating user with phone number:', fromNumber);
 
     // Get or create user
+    let user;
     try {
-      const [user] = await User.findOrCreate({
+      [user] = await User.findOrCreate({
         where: { phoneNumber: fromNumber }
       });
       console.log('User fetched or created:', user);
