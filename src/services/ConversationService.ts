@@ -45,8 +45,6 @@ export class ConversationService {
       await cacheService.set(assistantCacheKey, assistant);
     } else {
       console.log('Assistant found in cache:', assistant);
-    } else {
-      console.log('Thread found in cache:', thread);
     }
 
     console.log('Assistant fetched or created:', assistant);
