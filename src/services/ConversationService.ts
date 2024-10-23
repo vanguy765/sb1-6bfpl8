@@ -34,7 +34,8 @@ export class ConversationService {
     let assistant = cachedAssistant;
     if (!assistant) {
       [assistant] = await Assistant.findOrCreate({
-        where: { phoneNumber: toNumber, agentType }
+        where: { phoneNumber: toNumber, agentType },
+        defaults: { openaiAssistantId: 'default-id' }
       });
       await cacheService.set(assistantCacheKey, assistant);
     }
