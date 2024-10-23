@@ -5,7 +5,8 @@ const punycode = require('punycode');
 console.log('Punycode version:', punycode.version);
 import dotenv from 'dotenv';
 import conversationRoutes from './routes/conversation.js';
-import { sequelize, Sequelize } from './config/database.js';
+import { sequelize } from './config/database.js';
+import { Sequelize } from 'sequelize';
 
 console.log('Server: Sequelize instance imported:', sequelize instanceof Sequelize);
 
