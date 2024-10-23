@@ -48,7 +48,8 @@ export class ConversationService {
     let thread = cachedThread;
     if (!thread) {
       [thread] = await Thread.findOrCreate({
-        where: { userId: user.id, assistantId: assistant.id }
+        where: { userId: user.id, assistantId: assistant.id },
+        defaults: { openaiThreadId: 'default-thread-id' }
       });
       await cacheService.set(threadCacheKey, thread);
     }
