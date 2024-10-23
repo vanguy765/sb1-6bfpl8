@@ -24,11 +24,15 @@ export class ConversationService {
     console.log('Fetching or creating user with phone number:', fromNumber);
 
     // Get or create user
-    const [user] = await User.findOrCreate({
-      where: { phoneNumber: fromNumber }
-    });
-
-    console.log('User fetched or created:', user);
+    try {
+      const [user] = await User.findOrCreate({
+        where: { phoneNumber: fromNumber }
+      });
+      console.log('User fetched or created:', user);
+    } catch (error) {
+      console.error('Error fetching or creating user:', error);
+      throw error;
+    }
 
     // Check cache for assistant
     console.log('Checking cache for assistant with phone number:', toNumber, 'and agent type:', agentType);
@@ -38,11 +42,16 @@ export class ConversationService {
 
     let assistant = cachedAssistant;
     if (!assistant) {
-      [assistant] = await Assistant.findOrCreate({
-        where: { phoneNumber: toNumber, agentType },
-        defaults: { openaiAssistantId: 'default-id' }
-      });
-      await cacheService.set(assistantCacheKey, assistant);
+      try {
+        [assistant] = await Assistant.findOrCreate({
+          where: { phoneNumber: toNumber, agentType },
+          defaults: { openaiAssistantId: 'default-id' }
+        });
+        await cacheService.set(assistantCacheKey, assistant);
+      } catch (error) {
+        console.error('Error fetching or creating assistant:', error);
+        throw error;
+      }
     } else {
       console.log('Assistant found in cache:', assistant);
     }
@@ -57,11 +66,16 @@ export class ConversationService {
 
     let thread = cachedThread;
     if (!thread) {
-      [thread] = await Thread.findOrCreate({
-        where: { userId: user.id, assistantId: assistant.id },
-        defaults: { openaiThreadId: 'default-thread-id' }
-      });
-      await cacheService.set(threadCacheKey, thread);
+      try {
+        [thread] = await Thread.findOrCreate({
+          where: { userId: user.id, assistantId: assistant.id },
+          defaults: { openaiThreadId: 'default-thread-id' }
+        });
+        await cacheService.set(threadCacheKey, thread);
+      } catch (error) {
+        console.error('Error fetching or creating thread:', error);
+        throw error;
+      }
     }
 
     console.log('Thread fetched or created:', thread);
