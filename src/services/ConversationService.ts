@@ -19,6 +19,7 @@ export class ConversationService {
     agentType: string;
     message: string;
   }) {
+    console.log('Handling conversation with params:', params);
     const { fromNumber, toNumber, agentType, message } = params;
 
     // Get or create user

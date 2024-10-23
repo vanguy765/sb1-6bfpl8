@@ -1,4 +1,8 @@
 import express from 'express';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const punycode = require('punycode');
+console.log('Punycode version:', punycode.version);
 import dotenv from 'dotenv';
 import conversationRoutes from './routes/conversation.js';
 import { sequelize } from './config/database.js';
