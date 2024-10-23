@@ -1,7 +1,7 @@
 import { Model, DataTypes, Sequelize } from 'sequelize';
 import { sequelize } from '../config/database.js';
 
-console.log('User model: Sequelize instance imported:', sequelize instanceof require('sequelize').Sequelize);
+console.log('User model: Sequelize instance imported:', sequelize instanceof Sequelize);
 
 export class User extends Model {
   public id!: number;
