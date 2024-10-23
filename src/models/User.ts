@@ -8,6 +8,7 @@ export class User extends Model {
   public readonly updatedAt!: Date;
 }
 
+console.log('Initializing User model');
 User.init({
   id: {
     type: DataTypes.INTEGER,

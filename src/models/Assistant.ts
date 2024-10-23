@@ -10,6 +10,7 @@ export class Assistant extends Model {
   public readonly updatedAt!: Date;
 }
 
+console.log('Initializing Assistant model');
 Assistant.init({
   id: {
     type: DataTypes.INTEGER,

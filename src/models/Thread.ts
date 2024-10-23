@@ -10,6 +10,7 @@ export class Thread extends Model {
   public readonly updatedAt!: Date;
 }
 
+console.log('Initializing Thread model');
 Thread.init({
   id: {
     type: DataTypes.INTEGER,
